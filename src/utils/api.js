@@ -1,4 +1,4 @@
-export default class Api {
+class Api {
   constructor({ address, token, cohortId }) {
     this._address = address;
     this._token = token;
@@ -119,3 +119,12 @@ export default class Api {
   }
 }
 
+const config = {
+  address: 'https://mesto.nomoreparties.co',
+  token: '39cff778-54be-45db-8f91-d96bf9b92859',
+  cohortId: 'cohort-19'
+}
+
+
+const api = new Api(config);
+export default api;

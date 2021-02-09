@@ -3,23 +3,21 @@ import Header from './Header.js';
 import Main from './Main.js';
 import Footer from './Footer.js';
 import PopupWithForm from './PopupWithForm.js';
+import PopupWithImage from './PopupWithImage.js';
+
 
 export default function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
   const [isAddCardPopupOpen, setAddCardPopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
 
-
-
   function handleEditProfileClick() {
     setEditProfilePopupOpen(true);
   }
 
-
   function handleAddCardClick() {
     setAddCardPopupOpen(true);
   }
-
 
   function handleEditAvatarClick() {
     setEditAvatarPopupOpen(true);
@@ -31,17 +29,15 @@ export default function App() {
     setEditAvatarPopupOpen(false);
   }
 
-
   return (
 
-    <div className="page">
-
+  <div className="page">
     <Header />
-    <Main
-      onEditProfile={handleEditProfileClick}
-      onAddCard={handleAddCardClick}
-      onEditAvatar={handleEditAvatarClick}
-    />
+      <Main
+        onEditProfile={handleEditProfileClick}
+        onAddCard={handleAddCardClick}
+        onEditAvatar={handleEditAvatarClick}
+      />
     <Footer />
 
     {/* popupProfileEdit */}
@@ -132,17 +128,15 @@ export default function App() {
       </fieldset>
     </PopupWithForm>
 
-
     {/* popupConfirmDelete */}
-  <PopupWithForm name="confirm-delete"
-                    title="Вы уверены?"
-                    onClose={closeAllPopups}>
+    <PopupWithForm name="confirm-delete"
+                      title="Вы уверены?"
+                      onClose={closeAllPopups}>
     </PopupWithForm>
 
-
-
-{/*     <!--popupImageView--> */}
-
+    {/* popupImageView*/}
+    <PopupWithImage>
+    </PopupWithImage>
 
 {/*     <!--tamplate-cards--> */}
         <template className="template-cards">
