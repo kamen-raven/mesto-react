@@ -1,4 +1,6 @@
 /*vendor*/
+
+
 @import url(./vendor/normalize.css);
 
 /*fonts*/
@@ -60,7 +62,7 @@
 @import url(./blocks/popup/__input/_avatar-edit/popup__input_avatar-edit_link.css);
 @import url(./blocks/popup/__save-button/popup__save-button.css);
 @import url(./blocks/popup/__save-button/_disapled/popup__save-button_disabled.css);
-@import url(./blocks/popup/__save-button/_confirm/popup__save-button_confirm.css);
+@import url(./blocks/popup/__save-button/_confirm-delete/popup__save-button_confirm-delete.css);
 @import url(./blocks/popup/_image-view/popup_image-view.css);
 @import url(./blocks/popup/__figure-content/popup__figure-content.css);
 @import url(./blocks/popup/__figure-img/popup__figure-img.css);
