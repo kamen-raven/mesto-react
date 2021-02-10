@@ -27,4 +27,4 @@ ___
 
 ___
 
-Сайт доступен на [GitHub Pages](https://kamen-raven.github.io/mesto/)
+Сайт доступен на [GitHub Pages](https://kamen-raven.github.io/mesto-react/)
