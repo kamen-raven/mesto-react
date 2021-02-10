@@ -3,7 +3,7 @@ import Header from './Header.js';
 import Main from './Main.js';
 import Footer from './Footer.js';
 import PopupWithForm from './PopupWithForm.js';
-import PopupWithImage from './PopupWithImage.js';
+import ImagePopup from './ImagePopup.js';
 
 
 export default function App() {
@@ -13,8 +13,8 @@ export default function App() {
     setIsEditProfilePopupOpen(true);
   }
 
-  const [isAddCardPopupOpen, setIsAddCardPopupOpen] = React.useState(false);
-  function handleAddCardClick() {
+  const [isAddPlacePopupOpen, setIsAddCardPopupOpen] = React.useState(false);
+  function handleAddPlaceClick() {
     setIsAddCardPopupOpen(true);
   }
 
@@ -46,7 +46,7 @@ export default function App() {
     <Header />
       <Main
         onEditProfile={handleEditProfileClick}
-        onAddCard={handleAddCardClick}
+        onAddPlace={handleAddPlaceClick}
         onEditAvatar={handleEditAvatarClick}
         onCardClick={handleCardClick}
       />
@@ -90,7 +90,7 @@ export default function App() {
     {/* popupCardAdd */}
     <PopupWithForm name="card-add"
                     title="Новое место"
-                    isOpen={isAddCardPopupOpen}
+                    isOpen={isAddPlacePopupOpen}
                     onClose={closeAllPopups}>
       <fieldset className="popup__fieldset">
         <input className="popup__input popup__input_card-add_name"
@@ -147,10 +147,10 @@ export default function App() {
     </PopupWithForm>
 
     {/* popupImageView*/}
-    <PopupWithImage card={selectedCard}
+    <ImagePopup card={selectedCard}
                     isOpen={isPopupWithImageOpen}
                     onClose={closeAllPopups}>
-    </PopupWithImage>
+    </ImagePopup>
 
     </div>
   )

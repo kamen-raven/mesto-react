@@ -60,7 +60,7 @@ export default function Main(props) {
         <button className="profile__add-button"
                 type="button"
                 aria-label="добавить фото"
-                onClick={props.onAddCard}>
+                onClick={props.onAddPlace}>
         </button>
       </section>
       <section className="cards">
