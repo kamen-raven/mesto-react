@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default function PopupWithForm(props) {
   return (
     <div className={`popup popup_${props.name} ${props.isOpen ? 'popup_opened' : ''}`}>

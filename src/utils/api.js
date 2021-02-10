@@ -1,3 +1,5 @@
+import config from "./config.js";
+
 class Api {
   constructor({ address, token, cohortId }) {
     this._address = address;
@@ -117,12 +119,6 @@ class Api {
     })
       .then(this._returnRes)
   }
-}
-
-const config = {
-  address: 'https://mesto.nomoreparties.co',
-  token: '39cff778-54be-45db-8f91-d96bf9b92859',
-  cohortId: 'cohort-19'
 }
 
 

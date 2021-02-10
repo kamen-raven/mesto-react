@@ -7,26 +7,37 @@ import PopupWithImage from './PopupWithImage.js';
 
 
 export default function App() {
-  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
-  const [isAddCardPopupOpen, setAddCardPopupOpen] = React.useState(false);
-  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
-
+  //стейт открытия попапов
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   function handleEditProfileClick() {
-    setEditProfilePopupOpen(true);
+    setIsEditProfilePopupOpen(true);
   }
 
+  const [isAddCardPopupOpen, setIsAddCardPopupOpen] = React.useState(false);
   function handleAddCardClick() {
-    setAddCardPopupOpen(true);
+    setIsAddCardPopupOpen(true);
   }
 
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   function handleEditAvatarClick() {
-    setEditAvatarPopupOpen(true);
+    setIsEditAvatarPopupOpen(true);
   }
 
+  // стейт ткрытия изображения карточки
+  const [selectedCard, setSelectedCard] = React.useState();
+  const [isPopupWithImageOpen, setIsPopupWithImageOpen] = React.useState(false);
+
+  function handleCardClick(card) {
+    setIsPopupWithImageOpen(true);
+    setSelectedCard(card);
+  }
+
+  //закрытие попапов
   function closeAllPopups() {
-    setEditProfilePopupOpen(false);
-    setAddCardPopupOpen(false);
-    setEditAvatarPopupOpen(false);
+    setIsEditProfilePopupOpen(false);
+    setIsAddCardPopupOpen(false);
+    setIsEditAvatarPopupOpen(false);
+    setIsPopupWithImageOpen(false);
   }
 
   return (
@@ -37,6 +48,7 @@ export default function App() {
         onEditProfile={handleEditProfileClick}
         onAddCard={handleAddCardClick}
         onEditAvatar={handleEditAvatarClick}
+        onCardClick={handleCardClick}
       />
     <Footer />
 
@@ -135,37 +147,11 @@ export default function App() {
     </PopupWithForm>
 
     {/* popupImageView*/}
-    <PopupWithImage>
+    <PopupWithImage card={selectedCard}
+                    isOpen={isPopupWithImageOpen}
+                    onClose={closeAllPopups}>
     </PopupWithImage>
 
-{/*     <!--tamplate-cards--> */}
-        <template className="template-cards">
-          <div className="card">
-            <button className="card__remove-button"
-              type="button"
-              aria-label="удалить">
-            </button>
-            <button className="card__image-button"
-                    type="button">
-              <img className="card__image"
-                    src="#"
-                    alt="#" />
-            </button>
-            <div className="card__body">
-              <h2 className="card__title">
-              </h2>
-              <div className="card__like">
-                <button className="card__like-button "
-                        type="button"
-                        aria-label="поставить лайк">
-                </button>
-                <p className="card__like-counter">
-                </p>
-              </div>
-            </div>
-          </div>
-        </template>
-
-      </div>
+    </div>
   )
 }
