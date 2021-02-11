@@ -55,6 +55,7 @@ export default function App() {
     {/* popupProfileEdit */}
     <PopupWithForm name="profile-edit"
                     title="Редактировать профиль"
+                    buttonText="Сохранить"
                     isOpen={isEditProfilePopupOpen}
                     onClose={closeAllPopups}>
       <fieldset className="popup__fieldset">
@@ -90,6 +91,7 @@ export default function App() {
     {/* popupCardAdd */}
     <PopupWithForm name="card-add"
                     title="Новое место"
+                    buttonText="Сохранить"
                     isOpen={isAddPlacePopupOpen}
                     onClose={closeAllPopups}>
       <fieldset className="popup__fieldset">
@@ -123,6 +125,7 @@ export default function App() {
     {/* popupAvatarEdit */}
     <PopupWithForm name="avatar-edit"
                     title="Обновить аватар"
+                    buttonText="Сохранить"
                     isOpen={isEditAvatarPopupOpen}
                     onClose={closeAllPopups}>
       <fieldset className="popup__fieldset">
@@ -143,6 +146,7 @@ export default function App() {
     {/* popupConfirmDelete */}
     <PopupWithForm name="confirm-delete"
                       title="Вы уверены?"
+                      buttonText="Да"
                       onClose={closeAllPopups}>
     </PopupWithForm>
 
