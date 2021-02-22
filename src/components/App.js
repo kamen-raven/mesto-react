@@ -5,6 +5,7 @@ import Footer from './Footer.js';
 import api from "../utils/api.js";
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 import PopupWithForm from './Popup/PopupWithForm.js';
+import EditProfilePopup from "./Popup/EditProfilePopup.js";
 import ImagePopup from './Popup/ImagePopup.js';
 
 
@@ -57,6 +58,18 @@ export default function App() {
     setIsPopupWithImageOpen(false);
   }
 
+
+  function handleUpdateUser(data) {
+    api.patchUserInfo(data)
+      .then((res) => {
+        setCurretUser(res);
+        closeAllPopups();
+      })
+      .catch((error) => {
+        console.log(`Хьюстон, у нас проблема при обновлении информации пользователя: ${error}`)
+      });
+  }
+
   return (
   <CurrentUserContext.Provider value={currentUser}>
     <div className="page">
@@ -68,42 +81,12 @@ export default function App() {
           onCardClick={handleCardClick}
         />
       <Footer />
-
     {/* popupProfileEdit */}
-      <PopupWithForm name="profile-edit"
-                      title="Редактировать профиль"
-                      buttonText="Сохранить"
-                      isOpen={isEditProfilePopupOpen}
-                      onClose={closeAllPopups}>
-        <fieldset className="popup__fieldset">
-          <input className="popup__input popup__input_profile-edit_name"
-                  id="input--profile-name"
-                  type="text"
-                  name="name"
-                  placeholder="Имя"
-                  minLength="2"
-                  maxLength="40"
-                  defaultValue=""
-                  autoComplete="off"
-                  required />
-          <span className="popup__input-error"
-                id="input--profile-name-error">
-          </span>
-          <input className="popup__input popup__input_profile-edit_about"
-                  id="input-profile-about"
-                  type="text"
-                  name="about"
-                  placeholder="О себе"
-                  minLength="2"
-                  maxLength="200"
-                  defaultValue=""
-                  autoComplete="off"
-                  required />
-          <span className="popup__input-error"
-                id="input-profile-about-error">
-          </span>
-        </fieldset>
-      </PopupWithForm>
+    <EditProfilePopup
+      isOpen={isEditProfilePopupOpen}
+      onClose={closeAllPopups}
+      onUpdateUser={handleUpdateUser}
+    />
 
     {/* popupCardAdd */}
       <PopupWithForm name="card-add"
