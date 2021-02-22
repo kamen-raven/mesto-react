@@ -21,7 +21,6 @@ export default function Main(props) {
       })
   }, []);
 
-
   //функция лайков карточек
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
@@ -41,7 +40,6 @@ export default function Main(props) {
       })
   }
 
-
   //функция удаления карточек
   function handleCardDelete(card) {
     // Снова проверяем, являемся ли мы владельцем карточек
@@ -60,12 +58,6 @@ export default function Main(props) {
         })
     }
   }
-
-
-
-
-
-
 
   return (
     <main className="content">
