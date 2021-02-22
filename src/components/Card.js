@@ -31,12 +31,16 @@ export default function Card(props) {
     props.onCardLike(props.card);
   }
 
+  function handleDeleteClick() {
+    props.onCardDelete(props.card);
+  }
+
   return (
     <div className="card">
       <button className={cardDeleteButtonClassName}
               type="button"
               aria-label="удалить"
-              >
+              onClick={handleDeleteClick}>
       </button>
       <button className="card__image-button"
         type="button">
