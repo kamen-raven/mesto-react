@@ -20,6 +20,8 @@ export default function Main(props) {
     })
   }, []);
 
+
+  //функция лайков карточек
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
     const isLiked = card.likes.some(item =>
