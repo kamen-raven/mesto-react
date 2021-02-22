@@ -7,7 +7,6 @@ export default function Main(props) {
   //подписываемся на контекст данных текущего пользователя
   const currentUser = React.useContext(CurrentUserContext);
 
-
   //стейт карточек
   const [cards, setCards] = React.useState([]);
 
@@ -20,6 +19,27 @@ export default function Main(props) {
       console.log(`Хьюстон, у нас проблема при загрузке карточек: ${error}`)
     })
   }, []);
+
+  function handleCardLike(card) {
+    // Снова проверяем, есть ли уже лайк на этой карточке
+    const isLiked = card.likes.some(item =>
+      item._id === currentUser._id);
+    const likeRequest = !isLiked ? api.putLike(card._id) : api.deleteLike(card._id);
+    // Отправляем запрос в API и получаем обновлённые данные карточки
+    likeRequest
+    .then((newCard) => {
+        // Формируем новый массив на основе имеющегося, подставляя в него новую карточку
+      const newCards = cards.map((c) => c._id === card._id ? newCard : c);
+      // Обновляем стейт
+      setCards(newCards);
+    })
+    .catch((error) => {
+      console.log(`Хьюстон, у нас проблема при загрузке информации о лайках: ${error}`)
+    })
+  }
+
+
+
 
   return (
     <main className="content">
@@ -53,7 +73,8 @@ export default function Main(props) {
         {cards.map(card =>
           <Card card={card}
                 key={card._id}
-                onCardClick={props.onCardClick} />
+                onCardClick={props.onCardClick}
+                onCardLike={handleCardLike} />
         )}
       </section>
     </main>
