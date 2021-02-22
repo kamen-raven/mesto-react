@@ -1,26 +1,12 @@
 import React from 'react';
 import api from "../utils/api.js";
 import Card from "./Card.js";
+import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 
 export default function Main(props) {
+  //подписываемся на контекст данных текущего пользователя
+  const currentUser = React.useContext(CurrentUserContext);
 
-  //стейты данных пользоввателя
-  const [userName, setUserName] = React.useState('');
-  const [userDescription, setUserDescription] = React.useState('');
-  const [userAvatar, setUserAvatar] = React.useState('');
-
-  //отрисовка данных пользователя
-  React.useEffect(() => {
-    api.getUserData()
-      .then((res) => {
-        setUserName(res.name);
-        setUserDescription(res.about);
-        setUserAvatar(res.avatar);
-      })
-      .catch((error) => {
-        console.log(`Хьюстон, у нас проблема при загрузке информации о пользователе: ${error}`)
-      });
-  }, []);
 
   //стейт карточек
   const [cards, setCards] = React.useState([]);
@@ -41,12 +27,12 @@ export default function Main(props) {
         <button className="profile__avatar-button"
                 onClick={props.onEditAvatar}>
           <img className="profile__avatar"
-                src={userAvatar}
+                src={currentUser.avatar}
                 alt="аватарка" />
         </button>
         <div className="profile__info">
           <h1 className="profile__title">
-            {userName}
+            {currentUser.name}
           </h1>
           <button className="profile__edit-button"
                   type="button"
@@ -54,7 +40,7 @@ export default function Main(props) {
                   onClick={props.onEditProfile}>
           </button>
           <p className="profile__subtitle">
-            {userDescription}
+            {currentUser.about}
           </p>
         </div>
         <button className="profile__add-button"
