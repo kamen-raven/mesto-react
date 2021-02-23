@@ -189,17 +189,19 @@ export default function App() {
     />
 
     {/* popupImageView*/}
-    <ImagePopup card={selectedCard}
-                      isOpen={isPopupWithImageOpen}
-                      onClose={closeAllPopups}>
-      </ImagePopup>
+    <ImagePopup
+      card={selectedCard}
+      isOpen={isPopupWithImageOpen}
+      onClose={closeAllPopups}
+    />
 
     {/* popupConfirmDelete */}
-      <PopupWithForm name="confirm-delete"
-                        title="Вы уверены?"
-                        buttonText="Да"
-                        onClose={closeAllPopups}>
-      </PopupWithForm>
+    <PopupWithForm
+      name="confirm-delete"
+      title="Вы уверены?"
+      buttonText="Да"
+      onClose={closeAllPopups}
+    />
 
     </div>
   </CurrentUserContext.Provider>

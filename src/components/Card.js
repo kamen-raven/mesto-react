@@ -31,6 +31,7 @@ export default function Card(props) {
     props.onCardLike(props.card);
   }
 
+  //функция удаления карточки
   function handleDeleteClick() {
     props.onCardDelete(props.card);
   }

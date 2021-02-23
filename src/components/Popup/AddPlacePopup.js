@@ -1,18 +1,7 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm.js';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 
 export default function AddPlacePopup(props) {
-/*   //подписываемся на контекст данных текущего пользователя
-  const currentUser = React.useContext(CurrentUserContext);
-
-  // После загрузки текущего пользователя из API
-  // его данные будут использованы в управляемых компонентах.
-  React.useEffect(() => {
-    setName(currentUser.name);
-    setDescription(currentUser.about);
-  }, [currentUser]);
- */
   //стейт имени пользователя
   const [cardName, setCardName] = React.useState('');
   //обработчик инпута имени пользователя
