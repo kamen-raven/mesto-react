@@ -6,6 +6,7 @@ import api from "../utils/api.js";
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 import PopupWithForm from './Popup/PopupWithForm.js';
 import EditProfilePopup from "./Popup/EditProfilePopup.js";
+import EditAvatarPopup from "./Popup/EditAvatarPopup.js";
 import ImagePopup from './Popup/ImagePopup.js';
 
 
@@ -58,7 +59,7 @@ export default function App() {
     setIsPopupWithImageOpen(false);
   }
 
-
+  //изменение данных пользователя
   function handleUpdateUser(data) {
     api.patchUserInfo(data)
       .then((res) => {
@@ -67,6 +68,18 @@ export default function App() {
       })
       .catch((error) => {
         console.log(`Хьюстон, у нас проблема при обновлении информации пользователя: ${error}`)
+      });
+  }
+
+
+  function handleUpdateAvatar(data) {
+    api.patchUserAvatar(data)
+      .then((res) => {
+        setCurretUser(res);
+        closeAllPopups();
+      })
+      .catch((error) => {
+        console.log(`Хьюстон, у нас проблема при обновлении аватара пользователя: ${error}`)
       });
   }
 
@@ -123,25 +136,11 @@ export default function App() {
       </PopupWithForm>
 
     {/* popupAvatarEdit */}
-      <PopupWithForm name="avatar-edit"
-                      title="Обновить аватар"
-                      buttonText="Сохранить"
-                      isOpen={isEditAvatarPopupOpen}
-                      onClose={closeAllPopups}>
-        <fieldset className="popup__fieldset">
-          <input className="popup__input popup__input_avatar-edit_link"
-                  id="input-avatar-url"
-                  type="url"
-                  name="avatar"
-                  placeholder="Ссылка на картинку аватара"
-                  defaultValue=""
-                  autoComplete="off"
-                  required />
-          <span className="popup__input-error"
-                id="input-avatar-url-error">
-          </span>
-        </fieldset>
-      </PopupWithForm>
+    <EditAvatarPopup
+      isOpen={isEditAvatarPopupOpen}
+      onClose={closeAllPopups}
+      onUpdateAvatar={handleUpdateAvatar}
+    />
 
     {/* popupConfirmDelete */}
       <PopupWithForm name="confirm-delete"
