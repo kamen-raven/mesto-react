@@ -4,11 +4,11 @@ import Main from './Main.js';
 import Footer from './Footer.js';
 import api from "../utils/api.js";
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
-import PopupWithForm from './Popup/PopupWithForm.js';
-import EditProfilePopup from "./Popup/EditProfilePopup.js";
-import EditAvatarPopup from "./Popup/EditAvatarPopup.js";
-import AddPlacePopup from "./Popup/AddPlacePopup.js";
-import ImagePopup from './Popup/ImagePopup.js';
+import PopupWithForm from './PopupWithForm.js';
+import EditProfilePopup from "./EditProfilePopup.js";
+import EditAvatarPopup from "./EditAvatarPopup.js";
+import AddPlacePopup from "./AddPlacePopup.js";
+import ImagePopup from './ImagePopup.js';
 
 
 export default function App() {

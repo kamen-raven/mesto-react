@@ -1,4 +1,4 @@
-import config from "./config.js";
+import config from "./utils.js";
 
 class Api {
   constructor({ address, token, cohortId }) {
