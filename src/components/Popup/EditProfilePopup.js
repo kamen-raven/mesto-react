@@ -13,7 +13,6 @@ export default function EditProfilePopup(props) {
     setDescription(currentUser.about);
   }, [currentUser]);
 
-
   //стейт имени пользователя
   const [name, setName] = React.useState('');
   //обработчик инпута имени пользователя
@@ -28,18 +27,16 @@ export default function EditProfilePopup(props) {
     setDescription(event.target.value)
   }
 
-  function handleSubmit(evt) {
+  //обработчик отправки формы
+  function handleSubmit(event) {
     // Запрещаем браузеру переходить по адресу формы
-    evt.preventDefault();
+    event.preventDefault();
     // Передаём значения управляемых компонентов во внешний обработчик
     props.onUpdateUser({
       name,
       about: description,
     });
   }
-
-
-
 
   return (
     <PopupWithForm name="profile-edit"

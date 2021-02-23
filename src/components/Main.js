@@ -1,63 +1,10 @@
 import React from 'react';
-import api from "../utils/api.js";
 import Card from "./Card.js";
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 
 export default function Main(props) {
   //подписываемся на контекст данных текущего пользователя
   const currentUser = React.useContext(CurrentUserContext);
-
-  //стейт карточек
-  const [cards, setCards] = React.useState([]);
-
-  //изначальная отрисовка карточек
-  React.useEffect(() => {
-    api.getInitialCards()
-      .then((res) => {
-        setCards(res);
-      })
-      .catch((error) => {
-        console.log(`Хьюстон, у нас проблема при загрузке карточек: ${error}`)
-      })
-  }, []);
-
-  //функция лайков карточек
-  function handleCardLike(card) {
-    // Снова проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some(item =>
-      item._id === currentUser._id);
-    const likeRequest = !isLiked ? api.putLike(card._id) : api.deleteLike(card._id);
-    // Отправляем запрос в API и получаем обновлённые данные карточки
-    likeRequest
-      .then((newCard) => {
-        // Формируем новый массив на основе имеющегося, подставляя в него новую карточку
-        const newCards = cards.map((c) => c._id === card._id ? newCard : c);
-        // Обновляем стейт
-        setCards(newCards);
-      })
-      .catch((error) => {
-        console.log(`Хьюстон, у нас проблема при загрузке информации о лайках: ${error}`)
-      })
-  }
-
-  //функция удаления карточек
-  function handleCardDelete(card) {
-    // Снова проверяем, являемся ли мы владельцем карточек
-    const isOwn = card.owner._id === currentUser._id;
-    // Отправляем запрос в API и получаем обновлённые данные карточки
-    if (isOwn) {
-      api.deleteCard(card._id)
-        .then(() => {
-          // Формируем новый массив на основе имеющегося, убирая из него удаленную карточку
-          const newCards = cards.filter((c) => c._id !== card._id);
-          // Обновляем стейт
-          setCards(newCards);
-        })
-        .catch((error) => {
-          console.log(`Хьюстон, у нас проблема при удалении карточки: ${error}`)
-        })
-    }
-  }
 
   return (
     <main className="content">
@@ -88,12 +35,12 @@ export default function Main(props) {
         </button>
       </section>
       <section className="cards">
-        {cards.map(card =>
+        {props.cards.map(card =>
           <Card card={card}
                 key={card._id}
                 onCardClick={props.onCardClick}
-                onCardLike={handleCardLike}
-                onCardDelete={handleCardDelete} />
+                onCardLike={props.onCardLike}
+                onCardDelete={props.onCardDelete} />
         )}
       </section>
     </main>
