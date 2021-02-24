@@ -15,17 +15,6 @@ export default function App() {
   //стейт-переменная данных пользоваетля
   const [currentUser, setCurretUser] = React.useState({});
 
-  //отрисовка данных пользователя
-  React.useEffect(() => {
-    api.getUserData()
-      .then((res) => {
-        setCurretUser(res);
-      })
-      .catch((error) => {
-        console.log(`Хьюстон, у нас проблема при загрузке информации о пользователе: ${error}`)
-      });
-  }, []);
-
 
   //---------стейт открытия попапов
   //попап изменения профиля
@@ -47,7 +36,7 @@ export default function App() {
   }
 
   // стейт открытия изображения карточки
-  const [selectedCard, setSelectedCard] = React.useState();
+  const [selectedCard, setSelectedCard] = React.useState({});
   const [isPopupWithImageOpen, setIsPopupWithImageOpen] = React.useState(false);
 
   function handleCardClick(card) {
@@ -91,14 +80,17 @@ export default function App() {
   //стейт карточек
   const [cards, setCards] = React.useState([]);
 
-  //изначальная отрисовка карточек
   React.useEffect(() => {
-    api.getInitialCards()
-      .then((res) => {
-        setCards(res);
+    Promise.all([
+      api.getUserData(),
+      api.getInitialCards()
+    ])
+      .then(([userValue, initialCards]) => {
+        setCurretUser(userValue);  //отрисовка данных пользователя
+        setCards(initialCards);
       })
       .catch((error) => {
-        console.log(`Хьюстон, у нас проблема при загрузке карточек: ${error}`)
+        console.log(`Хьюстон, у нас проблема при загрузке первоначальной информации: ${error}`)
       })
   }, []);
 

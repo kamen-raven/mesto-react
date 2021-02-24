@@ -53,7 +53,6 @@ export default function EditProfilePopup(props) {
                 placeholder="Имя"
                 minLength="2"
                 maxLength="40"
-                defaultValue=""
                 autoComplete="off"
                 required
                 value={name}
@@ -68,7 +67,6 @@ export default function EditProfilePopup(props) {
               placeholder="О себе"
               minLength="2"
               maxLength="200"
-              defaultValue=""
               autoComplete="off"
               required
               value={description}
