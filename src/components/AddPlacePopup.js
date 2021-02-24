@@ -41,7 +41,6 @@ export default function AddPlacePopup(props) {
               placeholder="Название"
               minLength="2"
               maxLength="30"
-              defaultValue=""
               autoComplete="off"
               required
               value={cardName}
@@ -54,7 +53,6 @@ export default function AddPlacePopup(props) {
               type="url"
               name="link"
               placeholder="Ссылка на картинку"
-              defaultValue=""
               autoComplete="off"
               required
               value={cardLink}

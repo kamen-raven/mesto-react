@@ -27,7 +27,6 @@ export default function EditAvatarPopup(props) {
                 type="url"
                 name="avatar"
                 placeholder="Ссылка на картинку аватара"
-                defaultValue=""
                 autoComplete="off"
                 required
                 ref={avatarInputRef} />
